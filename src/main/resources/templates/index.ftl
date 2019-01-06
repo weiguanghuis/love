@@ -16,9 +16,9 @@
       <a class="logo" href="/">
         <img src="${base}/static/img/logo.png" alt="layui">
       </a>
-      <h2 class="title">办公系统</h2>
+      <h2 class="title">微广汇后台管理系统</h2>
       <ul class="lps-nav">
-        <li>欢迎您，${user.name}</li>
+        <li>欢迎您，</li>
         <li  ><span><i class="iconfont icon-moban162"></i></span><span>修改密码</span></li>
         <li onclick="window.location.href='${base}/duserController/loginout.html'"><span><i class="iconfont icon-tuichu"></i></span><span>退出登录</span></li>
       </ul>
@@ -50,15 +50,65 @@
     
     
     <li class="layui-nav-item ">
-      <a href="javascript:;">
-        <i class="iconfont icon-suo"></i><span class="menu-title">个人管理</span>
+      <a href="javascript:void(0);">
+        <i class="iconfont icon-suo"></i><span class="menu-title">用户管理</span>
       </a>
       <dl class="layui-nav-child">
-        <dd lps-menu="${base}/achievement/achievement.html" ><a href="javascript:;">业绩报表</a></dd>
-        <dd lps-menu="${base}/duserController/userdata.html" ><a href="javascript:;">修改信息</a></dd>
-        <dd lps-menu="${base}/duserController/password.html" ><a href="javascript:;">修改密码</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">普通用户管理</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">广告商管理</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">用户权限管理</a></dd>
       </dl>
-    </li> 
+    </li>
+
+    <li class="layui-nav-item ">
+      <a href="javascript:void(0);">
+        <i class="iconfont icon-suo"></i><span class="menu-title">用户日志管理</span>
+      </a>
+      <dl class="layui-nav-child">
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">普通用户日志</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">广告商日志</a></dd>
+      </dl>
+    </li>
+
+    <li class="layui-nav-item ">
+      <a href="javascript:void(0);">
+        <i class="iconfont icon-suo"></i><span class="menu-title">广告管理</span>
+      </a>
+      <dl class="layui-nav-child">
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">广告发布</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">广告列表</a></dd>
+      </dl>
+    </li>
+
+    <li class="layui-nav-item ">
+      <a href="javascript:void(0);">
+        <i class="iconfont icon-suo"></i><span class="menu-title">订单管理</span>
+      </a>
+      <dl class="layui-nav-child">
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">商城订单</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item ">
+      <a href="javascript:void(0);">
+        <i class="iconfont icon-suo"></i><span class="menu-title">账单管理</span>
+      </a>
+      <dl class="layui-nav-child">
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">商城账单</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">微信账单</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item ">
+      <a href="javascript:void(0);">
+        <i class="iconfont icon-suo"></i><span class="menu-title">商品管理（世晓做）</span>
+      </a>
+      <dl class="layui-nav-child">
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">商品发布</a></dd>
+        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">商品列表</a></dd>
+      </dl>
+    </li>
+
+
+
   </ul>
 </nav>
 

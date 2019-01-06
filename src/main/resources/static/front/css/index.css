@@ -112,6 +112,26 @@ b{
 .layui-tab-brief>.layui-tab-title .layui-this{
   color:#000 !important;
 }
+.productTileForm{
+  margin-right: 1%;
+  border:1px #eeeeee solid;
+  height: 258px;
+}
+.topFlagImgDiv{
+  height: 160px;
+  position: relative;
+  overflow: hidden;
+}
+.showprodect{
+  margin-top: 1%;
+}
+.propList{
+  margin-left: 35%;
+  margin-top: 5%;
+}
+.topFlagImgDiv table{
+  width:100%;
+}
 
 
 

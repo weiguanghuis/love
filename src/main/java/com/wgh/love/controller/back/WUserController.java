@@ -34,54 +34,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 
+
 /**
- * 医生个人业绩管理
- * @author Alan 创建于: 2018-1-17 下午2:43:43
- *
- */
+* @Description:
+* @Author:         Alan
+* @CreateDate:     2019/1/6 14:14
+*/
 @Controller
-@RequestMapping("achievement")
+@RequestMapping("isback")
 public class WUserController extends BaseController {
-    @Resource
-    private DAppointmentService dAppointmentService;
-     
-     
-    @GetMapping("/achievement.html")
+
+
+    @GetMapping("index.html")
     public String  achievement () {
-    	Integer[] dataByCount = dAppointmentService.getDataByCount(GetCurUser().getId());
-    	Integer[] dataByCount2 = dAppointmentService.getDataByCount2(GetCurUser().getId());
-    	request.setAttribute("appAllNum",dataByCount[0]);//今日预约数量
-    	request.setAttribute("appDoNum",dataByCount[1]);//今日预约完成结算
-    	request.setAttribute("backAllNum",dataByCount2[0]);//今日需回访
-    	request.setAttribute("backDoNum",dataByCount2[1]);//今日已回访
-    	
-    	
-    	
-    	
-    	
 
-        return "back/achievement";
+        return "index";
     }
     
     
-    @PostMapping("/countData")
-    public void   countData(String time) {
-    	if (time.length()<=0) {
-    		time="2017年12月12日-2030年12月12日";
-		}
-    	
-    	countBytime countsAllApp = dAppointmentService.countsAllApp(time,GetCurUser().getId());
-    	
-    	sendOutPrint1(countsAllApp);
-    }
-    
-     
-    
-
-
-
-
-
 
 
 
