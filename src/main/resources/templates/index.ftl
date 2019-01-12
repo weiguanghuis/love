@@ -54,7 +54,7 @@
         <i class="iconfont icon-suo"></i><span class="menu-title">用户管理</span>
       </a>
       <dl class="layui-nav-child">
-        <dd lps-menu="javascript:void(0);" ><a href="javascript:;">普通用户管理</a></dd>
+        <dd lps-menu="${base}/tuserdataController/showTUserdata.html" ><a href="javascript:;">普通用户管理</a></dd>
         <dd lps-menu="javascript:void(0);" ><a href="javascript:;">广告商管理</a></dd>
         <dd lps-menu="javascript:void(0);" ><a href="javascript:;">用户权限管理</a></dd>
       </dl>
