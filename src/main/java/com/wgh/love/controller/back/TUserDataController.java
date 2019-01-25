@@ -44,18 +44,15 @@ public class TUserDataController extends BaseController {
     @PostMapping("/tuserdatalist")
     public void queryAllTUserData(LaytableDate date){
 
-        date = new LaytableDate();
-        date.setPage(1);
-        date.setLimit(10);
         PageHelper page = new PageHelper();
         page.startPage(date.getPage(), date.getLimit());
-
-        List<TUserData> tUserData = tUserDataService.queryAllTUserData(null);
+        List<TUserData> tUserData = tUserDataService.queryAllTUserData(date.getName(),date.getOrder());
 
         Page<TUserData> listCountry = (Page<TUserData>)tUserData;
         long total = listCountry.getTotal();
         LayDates dates=new LayDates(0,"",total,tUserData);
-        sendOutPrint(tUserData);
+        //sendOutPrint(tUserData);
+        sendOutPrint("list",tUserData);
     }
 
 }

@@ -12,10 +12,12 @@ public interface TUserDataMapper extends MyMapper<TUserData> {
 
     /**
      * 查询普通用户列表
-     * @param id
+     * @param sortOrder
      * @return
      */
-    @Select("select * from t_user_data where 1=1 and status !=0 order by id")
+    @Select("select * from t_user_data where 1=1 and status !=0 '#{username}'  order by '#{sortOrder}'")
     @ResultType(TUserData.class)
-    List<TUserData> findAllByOrder(@Param("id") Integer id);
+    List<TUserData> findAllByOrder(
+            @Param("username") String username,
+            @Param("sortOrder") String sortOrder);
 }

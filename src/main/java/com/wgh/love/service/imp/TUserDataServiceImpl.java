@@ -24,9 +24,11 @@ public class TUserDataServiceImpl implements TUserDataService {
      * @return
      */
     @Override
-    public List<TUserData> queryAllTUserData(String username) {
-
-        List<TUserData> allByOrder = tUserDataMapper.findAllByOrder(null);
+    public List<TUserData> queryAllTUserData(String username,String sortOrder) {
+        if(username != null && !"".equals(username)){
+            username = " and username like '%" + username + "%'";
+        }
+        List<TUserData> allByOrder = tUserDataMapper.findAllByOrder(username,sortOrder);
         return allByOrder;
     }
 }

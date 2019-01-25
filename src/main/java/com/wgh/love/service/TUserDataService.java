@@ -17,5 +17,5 @@ public interface TUserDataService {
      * @param username
      * @return
      */
-    public List<TUserData> queryAllTUserData(String username);
+    public List<TUserData> queryAllTUserData(String username,String sortOrder);
 }
