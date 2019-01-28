@@ -18,4 +18,25 @@ public interface TUserDataService {
      * @return
      */
     public List<TUserData> queryAllTUserData(String username,String sortOrder);
+
+    /**
+     * 添加用户
+     * @param userData
+     * @return
+     */
+    public int addUser(TUserData userData);
+
+    /**根据id
+     * 删除用户
+     * @param id
+     * @return
+     */
+    public int deleteUser(Integer id);
+
+    /**
+     * 根据id修改用户信息
+     * @param userData
+     * @return
+     */
+    public int updateUser(TUserData userData);
 }

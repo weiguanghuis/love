@@ -44,6 +44,13 @@
 						</div>
 						<button class="layui-btn" @click="queryAllTUserData()">搜索</button>
 					</div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label"></label>
+                        <div class="layui-input-inline">
+                            <button class="layui-btn"  id="addPat">添加用户信息</button>
+                        </div>
+
+                    </div>
 				</div>
 			</div>
 

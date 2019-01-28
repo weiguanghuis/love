@@ -2,6 +2,7 @@ package com.wgh.love.service.imp;
 
 import com.wgh.love.mapper.TUserDataMapper;
 import com.wgh.love.model.TUserData;
+import com.wgh.love.model.TUserDataExample;
 import com.wgh.love.service.TUserDataService;
 import org.springframework.stereotype.Service;
 
@@ -30,5 +31,60 @@ public class TUserDataServiceImpl implements TUserDataService {
         }
         List<TUserData> allByOrder = tUserDataMapper.findAllByOrder(username,sortOrder);
         return allByOrder;
+    }
+
+    /**
+     * 添加用户
+     * @param userData
+     * @return
+     */
+    @Override
+    public int addUser(TUserData userData) {
+        return tUserDataMapper.insertSelective(userData);
+    }
+
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
+    @Override
+    public int deleteUser(Integer id) {
+       /* DPatientExample example1=new DPatientExample();
+        Criteria createCriteria1 = example1.createCriteria();
+        createCriteria1.andIdEqualTo(dPatient.getId());
+        createCriteria1.andDidEqualTo(did);
+        List<DPatient> selectByExample = dPatientMapper.selectByExample(example1);
+        if (selectByExample.size()>0) {
+            DPatientExample example=new DPatientExample();
+            Criteria createCriteria = example.createCriteria();
+            createCriteria.andIdEqualTo(dPatient.getId());
+            return dPatientMapper.updateByExampleSelective(dPatient, example);
+
+
+        }*/
+
+        TUserDataExample example = new TUserDataExample();
+        TUserDataExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        TUserData user = new TUserData();
+        user.setStatus(0);
+        return tUserDataMapper.updateByExampleSelective(user,example);
+    }
+
+    @Override
+    public int updateUser(TUserData userData) {
+        TUserDataExample example = new TUserDataExample();
+        TUserDataExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(userData.getId());
+        criteria.andStatusEqualTo(1);
+        List<TUserData> selectByExample = tUserDataMapper.selectByExample(example);
+        if (selectByExample.size()>0) {
+            TUserDataExample example1 = new TUserDataExample();
+            TUserDataExample.Criteria criteria1 = example.createCriteria();
+            criteria.andIdEqualTo(userData.getId());
+            return tUserDataMapper.updateByExampleSelective(userData,example);
+        }
+        return -1;
     }
 }

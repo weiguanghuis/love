@@ -7,7 +7,9 @@ import com.wgh.love.model.LayDates;
 import com.wgh.love.model.LaytableDate;
 import com.wgh.love.model.TUserData;
 import com.wgh.love.service.TUserDataService;
+import com.wgh.love.util.DateUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,5 +56,56 @@ public class TUserDataController extends BaseController {
         //sendOutPrint(tUserData);
         sendOutPrint("list",tUserData);
     }
+
+    /**
+     * 添加用户信息
+     * @param user
+     * @return
+     */
+    @PostMapping("/addUser")
+    public String  addUser(TUserData user) {
+        user.setUsername("zzl20190128");
+        user.setHeadimg("headimg13245689");
+        user.setOpenid("openid123456");
+        user.setToken("token123456789");
+        user.setPowerid(3);
+        user.setStatus(1);
+        user.setCreattime(DateUtils.getNowDate());
+        user.setLastuptime(DateUtils.getNowDate());
+        int ok = tUserDataService.addUser(user);
+        return   "back/showTUserdata";
+    }
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    @PostMapping("/updateUser")
+    public String  updateUser(TUserData user) {
+        user.setId(16);
+        user.setUsername("zz-------------");
+        user.setHeadimg("headimg13245689");
+        user.setOpenid("openid123456");
+        user.setToken("token123456789");
+        user.setPowerid(4);
+        user.setStatus(1);
+        user.setCreattime(DateUtils.getNowDate());
+        user.setLastuptime(DateUtils.getNowDate());
+        int ok = tUserDataService.updateUser(user);
+        return   "back/showTUserdata";
+    }
+
+    /**根据id
+     * 删除用户信息
+     * @param id
+     * @return
+     */
+    @PostMapping("/deleteUser")
+    public String  deleteUser(Integer id) {
+        int ok = tUserDataService.deleteUser(id);
+        return   "back/showTUserdata";
+    }
+
 
 }
