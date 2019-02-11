@@ -5,6 +5,7 @@ import com.wgh.love.model.TUserData;
 import com.wgh.love.model.TUserDataExample;
 import com.wgh.love.service.TUserDataService;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,10 +27,19 @@ public class TUserDataServiceImpl implements TUserDataService {
      */
     @Override
     public List<TUserData> queryAllTUserData(String username,String sortOrder) {
-        if(username != null && !"".equals(username)){
+       /* if(username != null && !"".equals(username)){
             username = " and username like '%" + username + "%'";
         }
-        List<TUserData> allByOrder = tUserDataMapper.findAllByOrder(username,sortOrder);
+        List<TUserData> allByOrder = tUserDataMapper.findAllByOrder(username,sortOrder);*/
+
+        TUserDataExample example = new TUserDataExample();
+        TUserDataExample.Criteria criteria = example.createCriteria();
+        if(!StringUtils.isEmpty(username)){
+            criteria.andUsernameLike("%" + username + "%");
+        }
+        criteria.andStatusEqualTo(1);
+        example.setOrderByClause(sortOrder);
+        List<TUserData> allByOrder = tUserDataMapper.selectByExample(example);
         return allByOrder;
     }
 
@@ -50,20 +60,6 @@ public class TUserDataServiceImpl implements TUserDataService {
      */
     @Override
     public int deleteUser(Integer id) {
-       /* DPatientExample example1=new DPatientExample();
-        Criteria createCriteria1 = example1.createCriteria();
-        createCriteria1.andIdEqualTo(dPatient.getId());
-        createCriteria1.andDidEqualTo(did);
-        List<DPatient> selectByExample = dPatientMapper.selectByExample(example1);
-        if (selectByExample.size()>0) {
-            DPatientExample example=new DPatientExample();
-            Criteria createCriteria = example.createCriteria();
-            createCriteria.andIdEqualTo(dPatient.getId());
-            return dPatientMapper.updateByExampleSelective(dPatient, example);
-
-
-        }*/
-
         TUserDataExample example = new TUserDataExample();
         TUserDataExample.Criteria criteria = example.createCriteria();
         criteria.andIdEqualTo(id);

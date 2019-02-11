@@ -6,6 +6,7 @@ import com.wgh.love.controller.BaseController;
 import com.wgh.love.model.LayDates;
 import com.wgh.love.model.LaytableDate;
 import com.wgh.love.model.TUserData;
+import com.wgh.love.model.customModel.back.UserData;
 import com.wgh.love.service.TUserDataService;
 import com.wgh.love.util.DateUtils;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,10 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,12 +52,29 @@ public class TUserDataController extends BaseController {
         PageHelper page = new PageHelper();
         page.startPage(date.getPage(), date.getLimit());
         List<TUserData> tUserData = tUserDataService.queryAllTUserData(date.getName(),date.getOrder());
+        List<UserData> userData = new ArrayList<UserData>();
 
+        for(TUserData data : tUserData){
+            UserData ud = new UserData();
+            ud.setId(data.getId());
+            ud.setUsername(data.getUsername());
+            ud.setStatus(data.getStatus());
+            ud.setToken(data.getToken());
+            ud.setOpenid(data.getOpenid());
+            ud.setHeadimg(data.getHeadimg());
+            ud.setPowerid(data.getPowerid());
+            ud.setCreattime(data.getCreattime());
+            ud.setCreattimestr(DateUtils.DataToString(data.getCreattime()));
+            ud.setLastuptime(data.getLastuptime());
+            ud.setLastuptimestr(DateUtils.DataToString(data.getLastuptime()));
+
+            userData.add(ud);
+        }
         Page<TUserData> listCountry = (Page<TUserData>)tUserData;
         long total = listCountry.getTotal();
-        LayDates dates=new LayDates(0,"",total,tUserData);
+        LayDates dates=new LayDates(0,"",total,userData);
         //sendOutPrint(tUserData);
-        sendOutPrint("list",tUserData);
+        sendOutPrint("list",dates);
     }
 
     /**
@@ -63,17 +83,17 @@ public class TUserDataController extends BaseController {
      * @return
      */
     @PostMapping("/addUser")
-    public String  addUser(TUserData user) {
-        user.setUsername("zzl20190128");
-        user.setHeadimg("headimg13245689");
-        user.setOpenid("openid123456");
-        user.setToken("token123456789");
-        user.setPowerid(3);
+    @ResponseBody
+    public Integer  addUser(TUserData user ) {
+
+        user.setId(null);
         user.setStatus(1);
         user.setCreattime(DateUtils.getNowDate());
         user.setLastuptime(DateUtils.getNowDate());
         int ok = tUserDataService.addUser(user);
-        return   "back/showTUserdata";
+        //sendOutPrint("result",ok);
+        return   ok ;
+        //return   "back/showTUserdata";
     }
 
     /**
@@ -82,18 +102,13 @@ public class TUserDataController extends BaseController {
      * @return
      */
     @PostMapping("/updateUser")
-    public String  updateUser(TUserData user) {
-        user.setId(16);
-        user.setUsername("zz-------------");
-        user.setHeadimg("headimg13245689");
-        user.setOpenid("openid123456");
-        user.setToken("token123456789");
-        user.setPowerid(4);
-        user.setStatus(1);
-        user.setCreattime(DateUtils.getNowDate());
+    @ResponseBody
+    public Integer  updateUser(TUserData user) {
+
         user.setLastuptime(DateUtils.getNowDate());
         int ok = tUserDataService.updateUser(user);
-        return   "back/showTUserdata";
+
+        return   ok;
     }
 
     /**根据id
@@ -102,9 +117,10 @@ public class TUserDataController extends BaseController {
      * @return
      */
     @PostMapping("/deleteUser")
-    public String  deleteUser(Integer id) {
+    @ResponseBody
+    public Integer  deleteUser(Integer id) {
         int ok = tUserDataService.deleteUser(id);
-        return   "back/showTUserdata";
+        return   ok;
     }
 
 

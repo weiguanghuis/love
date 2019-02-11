@@ -51,4 +51,8 @@
         <appender-ref ref="fileErrorLog" />
     </root>
 
+    <!-- 输出sql语句  -->
+    <logger name="com.wgh.love.mapper" level="debug">
+        <appender-ref ref="consoleLog" />
+    </logger>
 </configuration>

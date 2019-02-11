@@ -15,8 +15,8 @@ public interface TUserDataMapper extends MyMapper<TUserData> {
      * @param sortOrder
      * @return
      */
-    //@Select("select * from t_user_data where 1=1 and status !=0 '#{username}'  order by '#{sortOrder}'")
-    @Select("select * from t_user_data where status=1 ")
+    @Select("select * from t_user_data where 1=1 and status !=0 '#{username}'  order by '#{sortOrder}'")
+   // @Select("select * from t_user_data where status=1 ")
     @ResultType(TUserData.class)
     List<TUserData> findAllByOrder(
             @Param("username") String username,
